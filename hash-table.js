@@ -12,14 +12,21 @@ class HashTable {
 
   constructor(numBuckets = 4) {
     // Your code here
+    this.count = 0;
+    this.capacity = numBuckets;
+    this.data = new Array(numBuckets).fill(null)
   }
 
   hash(key) {
     // Your code here
+    let hashed = sha256(key).substring(0, 8);
+    return parseInt(hashed, 16);
   }
 
   hashMod(key) {
     // Your code here
+    
+    return this.hash(key) % this.capacity;
   }
 
   insertNoCollisions(key, value) {
